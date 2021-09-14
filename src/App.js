@@ -125,11 +125,7 @@ class App extends Component {
           currentPage={page}
         />
         {showModal && (
-          <Modal
-            modalSrc={modalSrc}
-            showLoader={showModal}
-            toogleModal={this.toogleModal}
-          />
+          <Modal modalSrc={modalSrc} toogleModal={this.toogleModal} />
         )}
       </div>
     );

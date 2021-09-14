@@ -1,31 +1,29 @@
-import { Component } from "react";
 import PropTypes from "prop-types";
 import css from "./ImageGalleryItem.module.css";
 
-class ImageGalleryItem extends Component {
-  writeSrcState = (e) => {
-    this.props.writeSrcState(e.target.dataset.src);
-    this.props.toogleModal(true);
+export default function ImageGalleryItem({
+  imageGallery,
+  toogleModal,
+  writeSrcState,
+}) {
+  const handleSrcState = (data) => {
+    writeSrcState(data);
+    toogleModal(true);
   };
 
-  render() {
-    const { imageGallery } = this.props;
-
-    return (
-      imageGallery.length !== 0 &&
-      imageGallery.map((image) => (
-        <li key={image.id} className={css.ImageGalleryItem}>
-          <img
-            src={image.webformatURL}
-            alt={image.tags}
-            data-src={image.largeImageURL}
-            className={css.ImageGalleryItemImage}
-            onClick={this.writeSrcState}
-          />
-        </li>
-      ))
-    );
-  }
+  return (
+    imageGallery.length !== 0 &&
+    imageGallery.map((image) => (
+      <li key={image.id} className={css.ImageGalleryItem}>
+        <img
+          src={image.webformatURL}
+          alt={image.tags}
+          className={css.ImageGalleryItemImage}
+          onClick={() => handleSrcState(image.largeImageURL)}
+        />
+      </li>
+    ))
+  );
 }
 
 ImageGalleryItem.propTypes = {
@@ -33,5 +31,3 @@ ImageGalleryItem.propTypes = {
   toogleModal: PropTypes.func,
   writeSrcState: PropTypes.func,
 };
-
-export default ImageGalleryItem;
