@@ -13,8 +13,8 @@ export default function ImageGalleryItem({
 
   return (
     imageGallery.length !== 0 &&
-    imageGallery.map((image) => (
-      <li key={image.id} className={css.ImageGalleryItem}>
+    imageGallery.map((image, index) => (
+      <li key={index} className={css.ImageGalleryItem}>
         <img
           src={image.webformatURL}
           alt={image.tags}
